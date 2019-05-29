@@ -223,10 +223,26 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <!--吴限外加json包  -->
+    <dependency>
+		    <groupId>net.sf.ezmorph</groupId>
+		    <artifactId>ezmorph</artifactId>
+		    <version>1.0.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-collections</groupId>
+		    <artifactId>commons-collections</artifactId>
+		    <version>3.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-logging</groupId>
+		    <artifactId>commons-logging-api</artifactId>
+		    <version>1.1</version>
+		</dependency>
   </dependencies>
  
 
-	  <build>
+<build>
     <finalName>rwatch</finalName>
     <plugins>
    		<plugin>
@@ -237,7 +253,7 @@
 		    </configuration>
 		</plugin>
     </plugins> 
-  </build>
+</build>
   
   	<profiles>
 			<profile>
