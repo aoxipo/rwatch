@@ -80,6 +80,10 @@ public class CommentController {
          
          return j.toString();    
      }
-  
+    @RequestMapping("/toPosition")    
+    public ModelAndView toPosition(HttpSession session){      
+        ModelAndView mav = new ModelAndView("position");   
+        return mav;    
+    }
   
 }
