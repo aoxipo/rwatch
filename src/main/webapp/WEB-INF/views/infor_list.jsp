@@ -55,7 +55,7 @@ layui.use('table', function(){
 <body>
 <table class="layui-hide" id="test" lay-filter="test"></table>
 
-
+<h2>1</h2>
 
 </body>
 </html>
