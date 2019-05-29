@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsd.mapper.RDeviceInforMapper" >
+  <resultMap id="BaseResultMap" type="com.hsd.model.RDeviceInfor" >
+    <id column="DeviceInforId" property="deviceinforid" jdbcType="INTEGER" />
+    <result column="ByDeviceId" property="bydeviceid" jdbcType="INTEGER" />
+    <result column="State" property="state" jdbcType="VARCHAR" />
+    <result column="X" property="x" jdbcType="DOUBLE" />
+    <result column="Y" property="y" jdbcType="DOUBLE" />
+    <result column="Power" property="power" jdbcType="INTEGER" />
+    <result column="Time" property="time" jdbcType="TIMESTAMP" />
+    <result column="Flag" property="flag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DeviceInforId, ByDeviceId, State, X, Y, Power, Time, Flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from r_device_infor
+    where DeviceInforId = #{deviceinforid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from r_device_infor
+    where DeviceInforId = #{deviceinforid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsd.model.RDeviceInfor" >
+    insert into r_device_infor (DeviceInforId, ByDeviceId, State, 
+      X, Y, Power, Time, 
+      Flag)
+    values (#{deviceinforid,jdbcType=INTEGER}, #{bydeviceid,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, 
+      #{x,jdbcType=DOUBLE}, #{y,jdbcType=DOUBLE}, #{power,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{flag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsd.model.RDeviceInfor" >
+    insert into r_device_infor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deviceinforid != null" >
+        DeviceInforId,
+      </if>
+      <if test="bydeviceid != null" >
+        ByDeviceId,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="x != null" >
+        X,
+      </if>
+      <if test="y != null" >
+        Y,
+      </if>
+      <if test="power != null" >
+        Power,
+      </if>
+      <if test="time != null" >
+        Time,
+      </if>
+      <if test="flag != null" >
+        Flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deviceinforid != null" >
+        #{deviceinforid,jdbcType=INTEGER},
+      </if>
+      <if test="bydeviceid != null" >
+        #{bydeviceid,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=DOUBLE},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=DOUBLE},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsd.model.RDeviceInfor" >
+    update r_device_infor
+    <set >
+      <if test="bydeviceid != null" >
+        ByDeviceId = #{bydeviceid,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        X = #{x,jdbcType=DOUBLE},
+      </if>
+      <if test="y != null" >
+        Y = #{y,jdbcType=DOUBLE},
+      </if>
+      <if test="power != null" >
+        Power = #{power,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        Time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        Flag = #{flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where DeviceInforId = #{deviceinforid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsd.model.RDeviceInfor" >
+    update r_device_infor
+    set ByDeviceId = #{bydeviceid,jdbcType=INTEGER},
+      State = #{state,jdbcType=VARCHAR},
+      X = #{x,jdbcType=DOUBLE},
+      Y = #{y,jdbcType=DOUBLE},
+      Power = #{power,jdbcType=INTEGER},
+      Time = #{time,jdbcType=TIMESTAMP},
+      Flag = #{flag,jdbcType=INTEGER}
+    where DeviceInforId = #{deviceinforid,jdbcType=INTEGER}
+  </update>
+</mapper>

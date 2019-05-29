@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsd.mapper.RAlarmMapper" >
+  <resultMap id="BaseResultMap" type="com.hsd.model.RAlarm" >
+    <id column="AlarmId" property="alarmid" jdbcType="INTEGER" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Type" property="type" jdbcType="VARCHAR" />
+    <result column="Time" property="time" jdbcType="TIMESTAMP" />
+    <result column="ADeviceState" property="adevicestate" jdbcType="VARCHAR" />
+    <result column="Flag" property="flag" jdbcType="INTEGER" />
+    <result column="DeviceId" property="deviceid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    AlarmId, Name, Type, Time, ADeviceState, Flag, DeviceId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from r_alarm
+    where AlarmId = #{alarmid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from r_alarm
+    where AlarmId = #{alarmid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsd.model.RAlarm" >
+    insert into r_alarm (AlarmId, Name, Type, 
+      Time, ADeviceState, Flag, 
+      DeviceId)
+    values (#{alarmid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{adevicestate,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, 
+      #{deviceid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsd.model.RAlarm" >
+    insert into r_alarm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="alarmid != null" >
+        AlarmId,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="type != null" >
+        Type,
+      </if>
+      <if test="time != null" >
+        Time,
+      </if>
+      <if test="adevicestate != null" >
+        ADeviceState,
+      </if>
+      <if test="flag != null" >
+        Flag,
+      </if>
+      <if test="deviceid != null" >
+        DeviceId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="alarmid != null" >
+        #{alarmid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adevicestate != null" >
+        #{adevicestate,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsd.model.RAlarm" >
+    update r_alarm
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        Type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        Time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adevicestate != null" >
+        ADeviceState = #{adevicestate,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        Flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="deviceid != null" >
+        DeviceId = #{deviceid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where AlarmId = #{alarmid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsd.model.RAlarm" >
+    update r_alarm
+    set Name = #{name,jdbcType=VARCHAR},
+      Type = #{type,jdbcType=VARCHAR},
+      Time = #{time,jdbcType=TIMESTAMP},
+      ADeviceState = #{adevicestate,jdbcType=VARCHAR},
+      Flag = #{flag,jdbcType=INTEGER},
+      DeviceId = #{deviceid,jdbcType=INTEGER}
+    where AlarmId = #{alarmid,jdbcType=INTEGER}
+  </update>
+</mapper>

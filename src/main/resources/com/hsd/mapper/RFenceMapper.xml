@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsd.mapper.RFenceMapper" >
+  <resultMap id="BaseResultMap" type="com.hsd.model.RFence" >
+    <id column="FenceId" property="fenceid" jdbcType="INTEGER" />
+    <result column="ByDevice" property="bydevice" jdbcType="INTEGER" />
+    <result column="ByMember" property="bymember" jdbcType="INTEGER" />
+    <result column="X" property="x" jdbcType="DOUBLE" />
+    <result column="Y" property="y" jdbcType="DOUBLE" />
+    <result column="Radius" property="radius" jdbcType="DOUBLE" />
+    <result column="Time" property="time" jdbcType="TIMESTAMP" />
+    <result column="Flag" property="flag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FenceId, ByDevice, ByMember, X, Y, Radius, Time, Flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from r_fence
+    where FenceId = #{fenceid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from r_fence
+    where FenceId = #{fenceid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hsd.model.RFence" >
+    insert into r_fence (FenceId, ByDevice, ByMember, 
+      X, Y, Radius, Time, 
+      Flag)
+    values (#{fenceid,jdbcType=INTEGER}, #{bydevice,jdbcType=INTEGER}, #{bymember,jdbcType=INTEGER}, 
+      #{x,jdbcType=DOUBLE}, #{y,jdbcType=DOUBLE}, #{radius,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP}, 
+      #{flag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsd.model.RFence" >
+    insert into r_fence
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fenceid != null" >
+        FenceId,
+      </if>
+      <if test="bydevice != null" >
+        ByDevice,
+      </if>
+      <if test="bymember != null" >
+        ByMember,
+      </if>
+      <if test="x != null" >
+        X,
+      </if>
+      <if test="y != null" >
+        Y,
+      </if>
+      <if test="radius != null" >
+        Radius,
+      </if>
+      <if test="time != null" >
+        Time,
+      </if>
+      <if test="flag != null" >
+        Flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fenceid != null" >
+        #{fenceid,jdbcType=INTEGER},
+      </if>
+      <if test="bydevice != null" >
+        #{bydevice,jdbcType=INTEGER},
+      </if>
+      <if test="bymember != null" >
+        #{bymember,jdbcType=INTEGER},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=DOUBLE},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=DOUBLE},
+      </if>
+      <if test="radius != null" >
+        #{radius,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsd.model.RFence" >
+    update r_fence
+    <set >
+      <if test="bydevice != null" >
+        ByDevice = #{bydevice,jdbcType=INTEGER},
+      </if>
+      <if test="bymember != null" >
+        ByMember = #{bymember,jdbcType=INTEGER},
+      </if>
+      <if test="x != null" >
+        X = #{x,jdbcType=DOUBLE},
+      </if>
+      <if test="y != null" >
+        Y = #{y,jdbcType=DOUBLE},
+      </if>
+      <if test="radius != null" >
+        Radius = #{radius,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null" >
+        Time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        Flag = #{flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where FenceId = #{fenceid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsd.model.RFence" >
+    update r_fence
+    set ByDevice = #{bydevice,jdbcType=INTEGER},
+      ByMember = #{bymember,jdbcType=INTEGER},
+      X = #{x,jdbcType=DOUBLE},
+      Y = #{y,jdbcType=DOUBLE},
+      Radius = #{radius,jdbcType=DOUBLE},
+      Time = #{time,jdbcType=TIMESTAMP},
+      Flag = #{flag,jdbcType=INTEGER}
+    where FenceId = #{fenceid,jdbcType=INTEGER}
+  </update>
+</mapper>
