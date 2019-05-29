@@ -23,9 +23,8 @@ public class HealthController {
      */
     @RequestMapping(value ="deviceList")
     public String deviceList(){
-        
-        return "health/deviceList";
-        
+        // test
+        return "health/deviceList";       
     }
     
     
