@@ -21,7 +21,11 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Map<String, Object>> listInfor() {
-        // TODO Auto-generated method stub
         return commentMapper.listInfor();
+    }
+
+    @Override
+    public List<Map<String, Object>> listPosition() {
+        return commentMapper.listPosition();
     }
 }

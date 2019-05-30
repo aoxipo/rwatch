@@ -12,4 +12,6 @@ public interface CommentMapper {
 
     List<Map<String, Object>> listPageInfor(@Param(value="s")int s,
             @Param(value="e")int e);
+
+    List<Map<String, Object>> listPosition();
 }

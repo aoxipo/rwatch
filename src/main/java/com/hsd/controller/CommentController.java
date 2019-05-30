@@ -28,7 +28,7 @@ import net.sf.json.JSONObject;
 public class CommentController {
      
     @Autowired
-    private CommentService CommentService;
+    private CommentService commentService;
     
     @RequestMapping("/toInforList")    
     public ModelAndView toCommentList(HttpSession session){      
@@ -44,45 +44,26 @@ public class CommentController {
         s=(page-1)*limit;
         e=limit;
         JSONObject j = new JSONObject();
-        List<Map<String, Object>> list1 = CommentService.listInfor();
-        List<Map<String, Object>> list = CommentService.listPageInfor(s,e);
+        List<Map<String, Object>> list1 = commentService.listInfor();
+        List<Map<String, Object>> list = commentService.listPageInfor(s,e);
         MapListToList t=new MapListToList();
         List<Infor> inforList=t.toList(list);
-        /*List<Infor> inforList=new ArrayList();
-        for(int i=0;i<list.size();i++){
-            Map<String, Object> r = new HashMap<String, Object>();
-            System.out.println(list.get(i));
-            r=list.get(i);
-            Infor infor=new Infor();
-            infor.setName(String.valueOf(r.get("name")));
-            infor.setByMemberId(String.valueOf(r.get("ByMemberId")));
-            infor.setOntime(String.valueOf(r.get("Ontime")));
-            infor.setState(String.valueOf(r.get("state")));
-            infor.setTime(String.valueOf(r.get("time")));
-            infor.setType(String.valueOf(r.get("type")));
-            inforList.add(infor);
-            l=l.putAll(r);
-            System.out.println(r);
-        }*/
         JSONArray ar=JSONArray.fromObject(inforList);
         System.out.println(ar);
         Map<String, Object> result = new HashMap();
         result.put("code", 0);
         result.put("msg", "");
         result.put("count",list1.size() );
-        /*JSONArray array = JSONArray.fromObject(list);*/
-        
         result.put("data", ar);
         // 将其转换为JSON数据，并压入值栈返回
-        
-            
          j=JSONObject.fromObject(result);
-         
          return j.toString();    
      }
-    @RequestMapping("/toPosition")    
-    public ModelAndView toPosition(HttpSession session){      
-        ModelAndView mav = new ModelAndView("position");   
+    @RequestMapping("/position")    
+    public ModelAndView toPosition(HttpSession session){
+        ModelAndView mav = new ModelAndView("position_list");   
+        List<Map<String, Object>> list = commentService.listPosition();
+        mav.addObject("list", list);
         return mav;    
     }
   

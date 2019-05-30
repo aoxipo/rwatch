@@ -10,4 +10,6 @@ public interface CommentService {
 
     List<Map<String, Object>> listInfor();
 
+    List<Map<String, Object>> listPosition();
+
 }

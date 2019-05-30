@@ -3,14 +3,14 @@
 <mapper namespace="com.hsd.mapper.CommentMapper" >
   
   
-  <select id="listInfor" resultType="hashmap">
+  	<select id="listInfor" resultType="hashmap">
   		SELECT c.name,c.ByMemberId,a.type,a.time,b.time as Ontime,b.state 
   		FROM R_DEVICE_INFOR b,R_ALARM a,R_DEVICE c
   		WHERE 
   			a.DeviceId = b.deviceinforID and
   			b.bydeviceID = c.deviceID
-  </select>
-  <select id="listPageInfor" parameterType="int" resultType="hashmap">
+  	</select>
+  	<select id="listPageInfor" parameterType="int" resultType="hashmap">
         SELECT c.name,c.ByMemberId,a.type,a.time,b.time as Ontime,b.state 
   		FROM R_DEVICE_INFOR b,R_ALARM a,R_DEVICE c
   		WHERE a.DeviceId=b.deviceinforID and
@@ -18,5 +18,14 @@
   		limit #{s},#{e}
         
         
+	</select>
+    <select id="listPosition" resultType="hashmap">
+	    select c.`Name`,a.x,a.y  from (select * from (
+	    		select * from r_device_infor order by Time desc limit 100000
+				) as t
+			GROUP BY t.ByDeviceId) as a,r_device as b,r_member c
+		WHERE a.bydeviceId=b.DeviceId
+		AND b.ByMemberId=c.MemberId
+    	
     </select>
 </mapper>

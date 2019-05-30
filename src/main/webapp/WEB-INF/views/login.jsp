@@ -82,7 +82,7 @@
 	        	<dl class="layui-nav-child">
 		            <dd><a class="side-active" href="javascript:;" data-id="aDevicesAll" data-title="信息列表" data-url="<%=basePath %>Comment/toInforList">信息列表</a></dd>
 		            <dd><a class="side-active" href="javascript:;" data-id="aDeviceExp7" data-title="用户信息" data-url="url">用户信息</a></dd>
-		            <dd><a class="side-active" href="javascript:;" data-id="aDeviceExp15" data-title="实时跟踪" data-url="url">实时跟踪</a></dd>
+		            <dd><a class="side-active" href="javascript:;" data-id="aDeviceExp15" data-title="实时跟踪" data-url="<%=basePath %>Comment/position">实时跟踪</a></dd>
 	          	</dl>
 	        </li>
 	      </ul>
