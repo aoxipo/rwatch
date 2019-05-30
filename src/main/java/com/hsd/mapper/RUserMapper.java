@@ -1,17 +1,26 @@
 package com.hsd.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.hsd.model.RUser;
 
 public interface RUserMapper {
-    int deleteByPrimaryKey(Integer userId);
+    public int deleteByPrimaryKey(Integer userId);
 
-    int insert(RUser record);
+    public int insert(RUser record);
 
-    int insertSelective(RUser record);
+    public int insertSelective(RUser record);
 
-    RUser selectByPrimaryKey(Integer userId);
+    public RUser selectByPrimaryKey(Integer userId);
 
-    int updateByPrimaryKeySelective(RUser record);
+    public int updateByPrimaryKeySelective(RUser record);
 
-    int updateByPrimaryKey(RUser record);
+    public int updateByPrimaryKey(RUser record);
+    
+    public List<RUser> findAllUser();
+
+    public List<RUser> findAllUserPage(@Param(value="s")int s,
+            @Param(value="e")int e);
 }

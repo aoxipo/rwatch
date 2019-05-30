@@ -18,4 +18,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User findUser(@Param(value="username")String username, @Param(value="password")String password);
+
+    
 }

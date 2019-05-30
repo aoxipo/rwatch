@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hsd.model.RUser;
+
 public interface CommentMapper {
 
     List<Map<String, Object>> listInfor();
@@ -14,4 +16,6 @@ public interface CommentMapper {
             @Param(value="e")int e);
 
     List<Map<String, Object>> listPosition();
+
+    
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hsd.model.RUser;
 import com.hsd.model.Infor;
 import com.hsd.service.CommentService;
 import com.hsd.util.MapListToList;
@@ -66,5 +67,32 @@ public class CommentController {
         mav.addObject("list", list);
         return mav;    
     }
-  
+    @RequestMapping("/toUserList")    
+    public ModelAndView toUserList(HttpSession session){      
+        ModelAndView mav = new ModelAndView("user_list");   
+        return mav;    
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/userList",method=RequestMethod.POST)    
+    public String userList(HttpSession session,@RequestParam(value="page")int page,
+         @RequestParam(value="limit")int limit){
+        int s=0;
+        int e=0;
+        s=(page-1)*limit;
+        e=limit;
+        List<RUser> list=commentService.findAllUserPage(s,e);
+        List<RUser> list1=commentService.findAllUser();
+        JSONArray ar=JSONArray.fromObject(list);
+        System.out.println(ar);
+        Map<String, Object> result = new HashMap();
+        result.put("code", 0);
+        result.put("msg", "");
+        result.put("count",list1.size() );
+        result.put("data", ar);
+        // 将其转换为JSON数据，并压入值栈返回
+        JSONObject j = new JSONObject();
+        j=JSONObject.fromObject(result);
+        return j.toString();
+    }
 }

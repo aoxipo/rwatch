@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hsd.mapper.CommentMapper" >
   
-  
   	<select id="listInfor" resultType="hashmap">
   		SELECT c.name,c.ByMemberId,a.type,a.time,b.time as Ontime,b.state 
   		FROM R_DEVICE_INFOR b,R_ALARM a,R_DEVICE c
@@ -28,4 +27,5 @@
 		AND b.ByMemberId=c.MemberId
     	
     </select>
+    
 </mapper>

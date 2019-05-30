@@ -174,4 +174,11 @@
       DEL_FLAG = #{delFlag,jdbcType=CHAR}
     where USER_ID = #{userId,jdbcType=INTEGER}
   </update>
+   <select id="findAllUser" resultMap="BaseResultMap">
+    	select * from r_user
+   </select>
+   <select id="findAllUserPage" resultMap="BaseResultMap" parameterType="int" >
+    	select * from r_user
+    	limit #{s},#{e}
+   </select>
 </mapper>

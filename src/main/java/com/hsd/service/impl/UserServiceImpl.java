@@ -1,5 +1,6 @@
 package com.hsd.service.impl;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +19,6 @@ public class UserServiceImpl implements UserService {
         // TODO Auto-generated method stub
         return userMapper.findUser(username,password);
     }
+
+      
 }
