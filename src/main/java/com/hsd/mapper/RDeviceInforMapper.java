@@ -2,6 +2,8 @@ package com.hsd.mapper;
 
 import com.hsd.model.RDeviceInfor;
 
+import java.util.List;
+
 public interface RDeviceInforMapper {
     int deleteByPrimaryKey(Integer deviceinforid);
 
@@ -14,4 +16,5 @@ public interface RDeviceInforMapper {
     int updateByPrimaryKeySelective(RDeviceInfor record);
 
     int updateByPrimaryKey(RDeviceInfor record);
+    List<RDeviceInfor> GetdeviceinforALLList();
 }

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="rwatch:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>rwatch</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="rwatch.war">
+      <element id="artifact" artifact-name="rwatch:war exploded" />
+    </root>
+  </artifact>
+</component>

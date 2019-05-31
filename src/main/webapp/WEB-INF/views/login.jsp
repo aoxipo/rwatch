@@ -74,9 +74,13 @@
 	            <dd><a class="side-active" href="javascript:;" data-id="aDeviceExp" data-title="已过期设备" data-url="url">已过期设备</a></dd>
 	          </dl>
 	        </li>
-	        <li class="layui-nav-item">
-	        	<a href="javascript:;"><i class="fa fa-video-camera" aria-hidden="true">&nbsp;</i>监控</a>
-	        </li>
+			  <li class="layui-nav-item">
+				  <a href="javascript:;"><i class="fa fa-video-camera" aria-hidden="true">&nbsp;</i>监控</a>
+				  <dl class="layui-nav-child">
+					  <dd><a class="side-active" href="javascript:;" data-id="aDeviceMon" data-title="监控设备" data-url="<%=basePath%>monitor/device">监控设备 </a></dd>
+					  <dd><a class="side-active" href="javascript:;" data-id="aDevicePeo" data-title="个人模式" data-url="<%=basePath%>monitor/fence">个人模式</a></dd>
+				  </dl>
+			  </li>
 	        <li class="layui-nav-item">
 	      	    <a href="javascript:;"><i class="fa fa-exclamation-triangle" aria-hidden="true">&nbsp;</i>报警中心</a>
 	        	<dl class="layui-nav-child">

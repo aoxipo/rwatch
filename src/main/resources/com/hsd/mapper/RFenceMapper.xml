@@ -15,7 +15,7 @@
     FenceId, ByDevice, ByMember, X, Y, Radius, Time, Flag
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from r_fence
     where FenceId = #{fenceid,jdbcType=INTEGER}

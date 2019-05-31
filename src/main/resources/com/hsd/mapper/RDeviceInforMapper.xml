@@ -125,4 +125,12 @@
       Flag = #{flag,jdbcType=INTEGER}
     where DeviceInforId = #{deviceinforid,jdbcType=INTEGER}
   </update>
+  <select id="GetdeviceinforALLList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from (
+    select  <include refid="Base_Column_List" /> from r_device_infor order by Time desc limit 1000000
+    ) as t
+    GROUP BY t.ByDeviceId
+  </select>
 </mapper>

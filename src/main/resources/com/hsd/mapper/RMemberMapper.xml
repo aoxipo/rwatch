@@ -12,13 +12,16 @@
     <result column="ByGroup" property="bygroup" jdbcType="VARCHAR" />
     <result column="Flag" property="flag" jdbcType="INTEGER" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    MemberId, Name, Level, Phone, Age,Height,Weight,ByGroup,Flag
+  </sql>
   <insert id="insert" parameterType="com.hsd.model.RMember" >
-    insert into r_member (MemberId, Name, Level, 
-      Phone, Age, Height, 
+    insert into r_member (MemberId, Name, Level,
+      Phone, Age, Height,
       Weight, ByGroup, Flag
       )
-    values (#{memberid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
-      #{phone,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{height,jdbcType=DOUBLE}, 
+    values (#{memberid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
+      #{phone,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{height,jdbcType=DOUBLE},
       #{weight,jdbcType=DOUBLE}, #{bygroup,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}
       )
   </insert>
@@ -83,4 +86,42 @@
       </if>
     </trim>
   </insert>
+  <select id="GetALLList" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from r_member
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsd.model.RMember" >
+    update r_fence
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberid != null" >
+        #{memberid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="bygroup != null" >
+        #{bygroup,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+    where FenceId = #{fenceid,jdbcType=INTEGER}
+  </update>
 </mapper>

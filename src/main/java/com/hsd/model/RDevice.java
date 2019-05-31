@@ -1,6 +1,7 @@
 package com.hsd.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class RDevice {
     private Integer deviceid;
@@ -9,11 +10,36 @@ public class RDevice {
 
     private String name;
 
+    private String devicename;
     private Date stime;
 
     private Date etime;
 
     private Integer flag;
+
+    private RMember user;
+
+    private List<RDeviceInfor> infor;
+
+
+    public String getDevicename() {
+        return devicename;
+    }
+
+    public void setDevicename(String devicename) {
+        this.devicename = devicename;
+    }
+
+
+    public RMember getUser(){return user;}
+    public void setUser(){
+        this.user=user;
+    }
+    public List<RDeviceInfor> getInfor(){return infor;};
+
+    public void setInfor(List<RDeviceInfor> infor){
+        this.infor=infor;
+    }
 
     public Integer getDeviceid() {
         return deviceid;

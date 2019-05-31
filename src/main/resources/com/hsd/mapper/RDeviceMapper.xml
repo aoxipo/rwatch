@@ -4,29 +4,56 @@
   <resultMap id="BaseResultMap" type="com.hsd.model.RDevice" >
     <id column="DeviceId" property="deviceid" jdbcType="INTEGER" />
     <result column="ByMemberId" property="bymemberid" jdbcType="INTEGER" />
-    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="STime" property="stime" jdbcType="TIMESTAMP" />
     <result column="ETime" property="etime" jdbcType="TIMESTAMP" />
     <result column="Flag" property="flag" jdbcType="INTEGER" />
+    <association property="user" javaType="com.hsd.model.RMember">
+      <id column="MemberId" property="memberid" jdbcType="INTEGER" />
+      <result column="Name" property="name" jdbcType="VARCHAR" />
+      <result column="Level" property="level" jdbcType="INTEGER" />
+      <result column="Phone" property="phone" jdbcType="VARCHAR" />
+      <result column="Age" property="age" jdbcType="INTEGER" />
+      <result column="Height" property="height" jdbcType="DOUBLE" />
+      <result column="Weight" property="weight" jdbcType="DOUBLE" />
+      <result column="ByGroup" property="bygroup" jdbcType="VARCHAR" />
+      <result column="Flag" property="flag" jdbcType="INTEGER" />
+    </association>
+    <collection property="infor" javaType="list" ofType="com.hsd.model.RDeviceInfor">
+      <id column="DeviceInforId" property="deviceinforid" jdbcType="INTEGER" />
+      <result column="ByDeviceId" property="bydeviceid" jdbcType="INTEGER" />
+      <result column="State" property="state" jdbcType="VARCHAR" />
+      <result column="X" property="x" jdbcType="DOUBLE" />
+      <result column="Y" property="y" jdbcType="DOUBLE" />
+      <result column="Power" property="power" jdbcType="INTEGER" />
+      <result column="Time" property="time" jdbcType="TIMESTAMP" />
+      <result column="Flag" property="flag" jdbcType="INTEGER" />
+    </collection>
   </resultMap>
   <sql id="Base_Column_List" >
     DeviceId, ByMemberId, Name, STime, ETime, Flag
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from r_device
     where DeviceId = #{deviceid,jdbcType=INTEGER}
+  </select>
+  <select id="GetDeviceList" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from r_device
+
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from r_device
     where DeviceId = #{deviceid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hsd.model.RDevice" >
-    insert into r_device (DeviceId, ByMemberId, Name, 
+    insert into r_device (DeviceId, ByMemberId, Name,
       STime, ETime, Flag
       )
-    values (#{deviceid,jdbcType=INTEGER}, #{bymemberid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{deviceid,jdbcType=INTEGER}, #{bymemberid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
       #{stime,jdbcType=TIMESTAMP}, #{etime,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}
       )
   </insert>
@@ -103,4 +130,78 @@
       Flag = #{flag,jdbcType=INTEGER}
     where DeviceId = #{deviceid,jdbcType=INTEGER}
   </update>
+  <select id="MultiTableqBymemberName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  SELECT DISTINCT
+      g.DeviceId,
+      m.MemberId,
+      m.Name as 'name',
+      m.ByGroup ,
+      g.Name as 'devicename',
+      g.State,
+      g.X,
+      g.Y,
+      g.Power,
+      g.Time,
+      g.STime,
+      g.ETime
+  FROM
+      (
+      SELECT DISTINCT
+          a.DeviceId,
+          a.ByMemberId,
+          a.NAME,
+          b.State,
+          b.X,
+          b.Y,
+          b.Power,
+          b.Time,
+          a.STime,
+          a.ETime
+      FROM
+          ( SELECT * FROM ( SELECT * FROM r_device_infor ORDER BY Time DESC LIMIT 100000 ) AS t GROUP BY t.ByDeviceId ) b,
+          r_device a
+      WHERE
+          b.ByDeviceId = a.DeviceId
+      ) g,
+      r_member m
+  WHERE
+      m.MemberId = g.ByMemberId AND m.Name=#{membername,jdbcType=VARCHAR}
+  </select>
+  <select id="MultiTableq" resultMap="BaseResultMap" >
+    SELECT DISTINCT
+	g.DeviceId,
+	m.MemberId,
+	m.Name as 'name',
+	m.ByGroup ,
+	g.Name as 'devicename',
+	g.State,
+	g.X,
+	g.Y,
+	g.Power,
+	g.Time,
+	g.STime,
+	g.ETime
+FROM
+	(
+	SELECT DISTINCT
+		a.DeviceId,
+		a.ByMemberId,
+		a.NAME,
+		b.State,
+		b.X,
+		b.Y,
+		b.Power,
+		b.Time,
+		a.STime,
+		a.ETime
+	FROM
+		( SELECT * FROM ( SELECT * FROM r_device_infor ORDER BY Time DESC LIMIT 100000 ) AS t GROUP BY t.ByDeviceId ) b,
+		r_device a
+	WHERE
+		b.ByDeviceId = a.DeviceId
+	) g,
+	r_member m
+WHERE
+	m.MemberId = g.ByMemberId
+  </select>
 </mapper>
