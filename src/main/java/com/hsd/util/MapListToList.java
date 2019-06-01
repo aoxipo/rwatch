@@ -23,7 +23,7 @@ public class MapListToList {
             infor.setType(String.valueOf(r.get("type")));
             inforList.add(infor);
             /*l=l.putAll(r)*/;
-            System.out.println(r);
+            //System.out.println(r);
         }
         
         return inforList;

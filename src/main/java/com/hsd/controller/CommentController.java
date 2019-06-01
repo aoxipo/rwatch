@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,9 @@ import com.hsd.model.RUser;
 import com.hsd.model.Infor;
 import com.hsd.service.CommentService;
 import com.hsd.util.MapListToList;
+//吴限包导入
+//import com.alibaba.fastjson.JSONObject;
+//mport com.alibaba.fastjson.JSONArray;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -49,6 +54,7 @@ public class CommentController {
         List<Map<String, Object>> list = commentService.listPageInfor(s,e);
         MapListToList t=new MapListToList();
         List<Infor> inforList=t.toList(list);
+
         JSONArray ar=JSONArray.fromObject(inforList);
         System.out.println(ar);
         Map<String, Object> result = new HashMap();
