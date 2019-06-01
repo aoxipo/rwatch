@@ -237,24 +237,24 @@
                         draw_marker(params[0]);
                         break;
                     case 2:
-                        var params=[];
-                        params.push({"ByDevice":,"ByMember":,"X":,"Y":,"Radius":,});
-                        $.ajax({
-                            type : "post",
-                            datatype:"json",
-                            url : "<%=basePath %>monitor/addfence",
-                            data : params,
-                            success: function(data){
-                                if(data.success){
-                                    alert("成功添加!");
-                                }else{
-                                    alert(data.msg )
-                                }
-                            },
-                            error: function() {
-                                alert("请检查网络连接");
-                            }
-                        });
+                        <%--var params=[];--%>
+                        <%--params.push({"ByDevice":,"ByMember":,"X":,"Y":,"Radius":,});--%>
+                        <%--$.ajax({--%>
+                        <%--    type : "post",--%>
+                        <%--    datatype:"json",--%>
+                        <%--    url : "<%=basePath %>monitor/addfence",--%>
+                        <%--    data : params,--%>
+                        <%--    success: function(data){--%>
+                        <%--        if(data.success){--%>
+                        <%--            alert("成功添加!");--%>
+                        <%--        }else{--%>
+                        <%--            alert(data.msg )--%>
+                        <%--        }--%>
+                        <%--    },--%>
+                        <%--    error: function() {--%>
+                        <%--        alert("请检查网络连接");--%>
+                        <%--    }--%>
+                        <%--});--%>
                         break;
                     case 3:
                         day = "星期二";
