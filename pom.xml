@@ -13,7 +13,7 @@
         <slf4j.version>1.6.6</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
         <commons-lang3.version>3.3</commons-lang3.version>
-        <commons-collections.version>3.2.1</commons-collections.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
         <jackson.version>2.8.9</jackson.version>
         <junit.version>4.12</junit.version>
         <fastjosn.version>1.2.16</fastjosn.version>
@@ -239,7 +239,7 @@
 		<dependency>
 		    <groupId>commons-collections</groupId>
 		    <artifactId>commons-collections</artifactId>
-		    <version>3.2.1</version>
+		    <version>3.2.2</version>
 		</dependency>
 		<dependency>
 		    <groupId>commons-logging</groupId>
@@ -255,7 +255,7 @@
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>3.2.1</version>
+            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
